@@ -14,4 +14,20 @@ clearElement = domElement => {
 };
 
 const displayContainer = document.querySelector("#display-container");
-displayContainer.appendChild(buildElement("section", "national--parks"));
+
+const parkContainer = document.createElement("div")
+parkContainer.classList = "columnContainer"
+const monumentContainer = document.createElement("div")
+monumentContainer.classList = "columnContainer"
+
+const parkHeader = document.createElement("h1")
+const monumentHeader = document.createElement("h1")
+parkHeader.textContent = "National Parks"
+monumentHeader.textContent = "National Monuments"
+
+displayContainer.appendChild(parkContainer)
+displayContainer.appendChild(monumentContainer)
+parkContainer.appendChild(parkHeader)
+monumentContainer.appendChild(monumentHeader)
+parkContainer.appendChild(buildElement("section", "national--parks"));
+monumentContainer.appendChild(buildElement("section", "national--monuments"));
