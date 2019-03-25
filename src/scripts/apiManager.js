@@ -9,6 +9,9 @@ const getPark = (parkID) => fetch(`${apiBaseUrl}/parks/${parkID}`)
 const getAllMonuments = () => fetch(`${apiBaseUrl}/monuments`)
         .then(response => response.json())
 
+const getMonument = (monumentID) => fetch(`${apiBaseUrl}/monuments/${monumentID}`)
+        .then(response => response.json())
+
 const deletePark = (parkId) => fetch(`${apiBaseUrl}/parks/${parkId}`, {
         method: "DELETE"
 })
@@ -16,12 +19,20 @@ const deleteMonument = (monumentId) => fetch(`${apiBaseUrl}/monuments/${monument
         method: "DELETE"
 })
 
-const putPark = (parkID, updatedParkObject) => fetch(`${apiBaseUrl}/parks/${parkID}`, {
-        method: "PUT",
+const patchPark = (parkID, updatedParkObject) => fetch(`${apiBaseUrl}/parks/${parkID}`, {
+        method: "PATCH",
         headers: {
-          "content-type": "application/json"
+                "content-type": "application/json"
         },
         body: JSON.stringify(updatedParkObject)
-      })
+})
+
+const patchMonument = (monumentID, updatedMonumentObject) => fetch(`${apiBaseUrl}/monuments/${monumentID}`, {
+        method: "PATCH",
+        headers: {
+                "content-type": "application/json"
+        },
+        body: JSON.stringify(updatedMonumentObject)
+})
 
 

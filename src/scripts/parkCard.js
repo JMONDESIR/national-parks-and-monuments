@@ -17,6 +17,13 @@ const ParkCard = park => {
         parkArticle.appendChild(editParkButton)
         editParkButton.addEventListener("click", parkEdit)
 
+        if (park.visited) {
+                const visitedPark = document.createElement("button")
+                visitedPark.textContent = "Visited"
+                visitedPark.classList = "visitButton"
+                parkArticle.appendChild(visitedPark)
+        }
+
         return parkArticle
 }
 
@@ -45,7 +52,7 @@ const parkEditForm = (parkObject) => {
         const updateParkButton = document.createElement("button")
         updateParkButton.classList = "updateParkButton"
         updateParkButton.textContent = "Save Changes"
-        updateParkButton.addEventListener("click", handleUpdate)
+        updateParkButton.addEventListener("click", handleParkUpdate)
         editFormFragment.appendChild(updateParkButton)
 
         return editFormFragment

@@ -29,9 +29,19 @@ const parkEdit = () => {
 
 const monumentEdit = () => {
         console.log("edit button clicked")
+        const monumentID = event.target.parentNode.id.split("--")[1]
+        console.log(monumentID)
+        const monumentArticle = document.querySelector(`#monument--${monumentID}`);
+        clearElement(monumentArticle);
+
+        getMonument(monumentID).then(monumentToEdit => {
+                console.log(monumentToEdit)
+                const editFormForMonument = monumentEditForm(monumentToEdit);
+                monumentArticle.appendChild(editFormForMonument);
+        });
 }
 
-const handleUpdate = () => {
+const handleParkUpdate = () => {
         const parkID = event.target.parentNode.id.split("--")[1]
         console.log(parkID)
         const editedParkName = document.querySelector(`#editPark--${parkID}`);
@@ -40,8 +50,23 @@ const handleUpdate = () => {
 
         let updatedParkObject = {
                 name: editedParkName.value,
-                state: editedParkState.value
+                state: editedParkState.value,
         };
 
-        putPark(parkID, updatedParkObject).then(() => listNationalParks());
+        patchPark(parkID, updatedParkObject).then(() => listNationalParks());
+}
+
+const handleMonumentUpdate = () => {
+        const monumentID = event.target.parentNode.id.split("--")[1]
+        console.log(monumentID)
+        const editedMonumentName = document.querySelector(`#editMonument--${monumentID}`);
+        const editedMonumentState = document.querySelector(`#monumentState--${monumentID}`);
+        console.log(editedMonumentName.value, editedMonumentState.value)
+
+        let updatedMonumentObject = {
+                name: editedMonumentName.value,
+                state: editedMonumentState.value
+        };
+
+        patchMonument(monumentID, updatedMonumentObject).then(() => listNationalParks());
 }
